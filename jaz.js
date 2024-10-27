@@ -41,9 +41,7 @@ class Birthday {
   }
   
   update(delta) {
-    ctx.globalCompositeOperation = 'hard-light';
-    ctx.fillStyle = `rgba(20,20,20,${7 * delta})`;
-    ctx.fillRect(0, 0, this.width, this.height);
+    ctx.clearRect(0, 0, this.width, this.height); // Limpia el canvas sin sobrescribir con negro
 
     ctx.globalCompositeOperation = 'lighter';
     for (let firework of this.fireworks) firework.update(delta);
@@ -61,7 +59,7 @@ class Birthday {
     }
 
     if (this.fireworks.length > 1000) this.fireworks = this.fireworks.filter(firework => !firework.dead);
-  }
+}
 }
 
 class Firework {
